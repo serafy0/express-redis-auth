@@ -9,6 +9,8 @@ const app = express()
 //if the app is running with a proxy like (nginx)
 //app.set('trust proxy',1)
 
+//
+app.use(express.json())
 
 app.use(session)
 
