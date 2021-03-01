@@ -14,9 +14,11 @@ const users={
     }
 }
 
-//this would probably be async
+//this would probably be async when we use a database
 function findUserByEmail (email){
-    return user[email]
+
+    const user = users[email];
+    return user ? user:Promise.reject('user not found')
 }
 
 module.exports = {findUserByEmail}
