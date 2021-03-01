@@ -3,6 +3,8 @@ const router = require('./routes')
 
 const session = require('./middleware/session ')
 
+const corsMw =require('./middleware/cors')
+
 
 const app = express()
 
@@ -11,6 +13,11 @@ const app = express()
 
 //
 app.use(express.json())
+
+
+//setup CORS login
+app.options('*', corsMw)
+app.use(corsMw)
 
 app.use(session)
 
