@@ -17,7 +17,9 @@ const corOptions ={
         // db.loadOrigins(function (error, origins) {
         //     callback(error, origins)
         // })
-    }
+    },
+    credentials:true,
+
 
 
 }
