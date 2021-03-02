@@ -4,6 +4,7 @@ const router = require('./routes')
 const session = require('./middleware/session ')
 
 const corsMw =require('./middleware/cors')
+const apiErrorHandler =require('./errors/api-error-handler')
 
 
 const app = express()
@@ -23,6 +24,8 @@ app.use(session)
 
 
 app.use(router)
+
+app.use(apiErrorHandler)
 
 
 

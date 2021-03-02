@@ -1,3 +1,5 @@
+const ApiError = require('../errors/api-errors')
+
 //a middleware factory for auth
 function authorize(...roles) {
     const allowedRoles = new Set(roles)
@@ -6,12 +8,12 @@ function authorize(...roles) {
     return (req, res, next) => {
         if (!req.session || !req.session.user || !req.session.user.roles) {
             // return unauthorized
-            res.status(401).json("you are not logged in")
+            next(ApiError.unauthorized("you are not logged in"))
             return;
         }
         if (!isAuthorized(req.session.user.roles, allowedRoles)) {
             //return forbidden
-            res.status(403).json('forbidden: insufficient privileges')
+            next(ApiError.forbidden("forbidden insufficient privileges"))
         }
         next();
 
