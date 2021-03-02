@@ -1,5 +1,5 @@
 const cors = require('cors')
-
+const ApiError = require('../errors/api-errors')
 var whitelist = new Set( ['http://example1.com', 'http://example2.com'])
 //is set faster ??
 
@@ -12,7 +12,7 @@ const corOptions ={
         if (whitelist.has(origin)){
             callback(null,true)
         }else{
-            callback(new Error(`Not allowed by CORS`))
+            callback(ApiError.unauthorized('blocked by cors'))
         }
         // db.loadOrigins(function (error, origins) {
         //     callback(error, origins)
